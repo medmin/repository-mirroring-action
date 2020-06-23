@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 set -eu
 
-/setup-ssh.sh
+https="https://"
+gitext=".git"
 
-export GIT_SSH_COMMAND="ssh -v -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -l $INPUT_SSH_USERNAME"
-git remote add mirror "$INPUT_TARGET_REPO_URL"
+git remote add mirror "$https$INPUT_GITHUB_USERNAME:$INPUT_ACCESS_TOKEN@github.com/$INPUT_TARGET_REPO$gitext"
 git push --tags --force --prune mirror "refs/remotes/origin/*:refs/heads/*"
